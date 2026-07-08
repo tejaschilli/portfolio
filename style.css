@@ -2,15 +2,15 @@
    DESIGN SYSTEM & VARIABLES (WARM EDITORIAL SYSTEM)
    ---------------------------------------------------- */
 :root {
-  --bg-color: #F7F5F0;        /* Warm Alabaster Cream */
-  --text-primary: #1E1B18;    /* Deep Charcoal */
-  --text-secondary: #7A7570;  /* Warm Gray */
-  --accent-color: #C2593F;    /* Burnt Sienna / Terracotta */
-  --accent-light: #F2EBE1;    /* Pale Sienna / Sand */
-  --card-bg: #FFFFFF;         /* Solid Alabaster White */
-  --card-border: #E6DFD5;     /* Soft Sand Border */
-  --card-shadow: rgba(30, 27, 24, 0.04);
-  --accent-shadow: rgba(194, 89, 63, 0.15);
+  --bg-color: #0A0A0A;        /* Pitch Dark Black */
+  --text-primary: #FFFFFF;    /* Pure White */
+  --text-secondary: #8E8E93;  /* Medium Silver Gray */
+  --accent-color: #F2F2F7;    /* Light Gray / Silver Accent */
+  --accent-light: #1C1C1E;    /* Dark Charcoal Gray */
+  --card-bg: #121212;         /* Solid Matte Black */
+  --card-border: #2C2C2E;     /* Dark Slate Border */
+  --card-shadow: rgba(0, 0, 0, 0.5);
+  --accent-shadow: rgba(255, 255, 255, 0.03);
   
   --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -328,7 +328,7 @@ button {
 }
 
 .toggle-btn.active {
-  color: #FFFFFF;
+  color: var(--bg-color);
 }
 
 /* ----------------------------------------------------
@@ -697,7 +697,7 @@ button {
 
 .submit-btn {
   background-color: var(--accent-color);
-  color: #FFFFFF;
+  color: var(--bg-color);
   font-weight: 700;
   font-size: 0.95rem;
   padding: 1rem 2rem;
@@ -708,8 +708,9 @@ button {
 
 .submit-btn:hover {
   background-color: var(--text-primary);
+  color: var(--bg-color);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(30, 27, 24, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* ----------------------------------------------------
