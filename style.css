@@ -915,7 +915,8 @@ button {
   height: auto;
   display: block;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: #FAF8F5; /* Matches the warm cream background of the screenshots */
 }
 
 .slide-caption {
