@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tejas Pratap Singh — Portfolio of a Public Relations Officer and Social Media Manager. Creative, data-driven, and available for projects.">
+  <title>Tejas Pratap Singh | Portfolio</title>
+  
+  <!-- Font Preconnect & Import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pr-mode">
+
+  <!-- SVG Liquid gooey filter (used in toggle sliding) -->
+  <svg class="liquid-filter-svg" style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+    <defs>
+      <filter id="gooey">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+        <feBlend in="SourceGraphic" in2="goo" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <a href="#" class="logo">TEJAS</a>
+    
+    <div class="nav-status-container">
+      <div class="availability-badge magnetic">
+        <span class="pulse-dot"></span>
+        <span class="status-text">Available for Projects</span>
+      </div>
+      <nav class="nav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="container">
+    
+    <!-- Hero Bento Card -->
+    <section class="hero-section bento-card">
+      <div class="hero-text-content">
+        <h1 class="hero-title">TEJAS<br><span class="highlight-serif">PRATAP</span><br>SINGH</h1>
+        <p class="hero-subtitle">
+          Bridging the gap between brand narrative and audience engagement through strategic communication and high-impact digital campaigns.
+        </p>
+        
+        <!-- Toggle Switcher -->
+        <div class="toggle-container">
+          <div class="toggle-track">
+            <span class="toggle-indicator"></span>
+            <button class="toggle-btn active" id="btn-pr">PR Officer</button>
+            <button class="toggle-btn" id="btn-smm">Social Media Manager</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Portrait Card -->
+      <div class="hero-portrait-container">
+        <div class="portrait-arch">
+          <img src="assets/tejas.png" alt="Tejas Pratap Singh portrait" class="portrait-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Bar (Fluid Display) -->
+    <section class="metrics-section">
+      <div class="metrics-grid">
+        <div class="metric-item">
+          <h2 class="metric-number dynamic-metric" data-pr="15+" data-smm="140%">15+</h2>
+          <p class="metric-label dynamic-metric-label" data-pr="Media Outlets Liaised" data-smm="Avg. Reach Increase">Media Outlets Liaised</p>
+        </div>
+        <div class="metric-item">
+          <h2 class="metric-number dynamic-metric" data-pr="98%" data-smm="250k+">98%</h2>
+          <p class="metric-label dynamic-metric-label" data-pr="Positive Media Coverage" data-smm="Total Impressions Gained">Positive Media Coverage</p>
+        </div>
+        <div class="metric-item">
+          <h2 class="metric-number dynamic-metric" data-pr="45+" data-smm="12+">45+</h2>
+          <p class="metric-label dynamic-metric-label" data-pr="Press Releases Distributed" data-smm="Brand Campaigns Run">Press Releases Distributed</p>
+        </div>
+        <div class="metric-item">
+          <h2 class="metric-number dynamic-metric" data-pr="24/7" data-smm="100%">24/7</h2>
+          <p class="metric-label dynamic-metric-label" data-pr="Crisis Monitoring Response" data-smm="Content Calendar Delivery">Crisis Monitoring Response</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Bento Grid (Two columns on desktop) -->
+    <div class="bento-grid-main">
+      
+      <!-- Left Column: About & Experience -->
+      <div class="bento-column">
+        
+        <!-- About Box -->
+        <div class="bento-card" id="about">
+          <h3 class="card-title">Professional Narrative</h3>
+          <div class="about-text-container">
+            <p class="about-text dynamic-about" data-pr="I specialize in managing media relations, crafting impactful press releases, and coordinating high-exposure events to enhance public image. By monitoring coverage, identifying communication gaps, and building proactive crisis mitigation plans, I establish strong, trust-based partnerships between institutions and the public." data-smm="I am a creative and results-driven strategist with a track record of building brand visibility and driving audience growth across social channels. From content calendars to paid promotions and influencer collaborations, I transform analytics data into engaging campaigns that deliver measurable conversion and community growth.">
+              I specialize in managing media relations, crafting impactful press releases, and coordinating high-exposure events to enhance public image. By monitoring coverage, identifying communication gaps, and building proactive crisis mitigation plans, I establish strong, trust-based partnerships between institutions and the public.
+            </p>
+          </div>
+        </div>
+
+        <!-- Experience Box -->
+        <div class="bento-card" id="experience">
+          <h3 class="card-title">Work Timeline</h3>
+          <div class="timeline-header">
+            <h4 class="company-name">Gyan Sthali Academy</h4>
+            <span class="timeline-date">2025 - Present</span>
+          </div>
+          
+          <ul class="timeline-bullets" id="timeline-list">
+            <!-- Dynamically populated/swapped depending on state -->
+            <li class="timeline-item">Led Public Relations, Corporate Communications, and Brand Management initiatives by managing media relations, stakeholder communication, and press releases.</li>
+            <li class="timeline-item">Designed and managed creative assets and digital platforms, including website content, brochures, and banners.</li>
+            <li class="timeline-item">Coordinated events, outreach programs, and cross-functional projects, collaborating with internal teams, media, and vendors to strengthen brand visibility.</li>
+            <li class="timeline-item">Developed comprehensive crisis communication protocols to manage external messaging and safeguard the organization's public reputation.</li>
+          </ul>
+        </div>
+
+        <!-- Education Box -->
+        <div class="bento-card" id="education">
+          <h3 class="card-title">Academic Background</h3>
+          <div class="edu-item">
+            <div class="edu-meta">
+              <span class="edu-date">2026 - 2028</span>
+              <h4 class="edu-degree">Master's in Business Administration</h4>
+            </div>
+            <p class="edu-school">Finance &middot; NMIMS - CODE</p>
+          </div>
+          
+          <div class="edu-item">
+            <div class="edu-meta">
+              <span class="edu-date">2022 - 2025</span>
+              <h4 class="edu-degree">BSc. in Biotechnology</h4>
+            </div>
+            <p class="edu-school">CSJMU Kanpur</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Skills, Connect & Contact -->
+      <div class="bento-column">
+        
+        <!-- Skills Box -->
+        <div class="bento-card" id="skills">
+          <h3 class="card-title">Expertise Map</h3>
+          
+          <!-- Skill category containers -->
+          <div class="skills-wrapper">
+            <div class="skill-category active-category" id="skills-core">
+              <h4 class="skill-subtitle dynamic-skills-title" data-pr="Core PR Skills" data-smm="Core Social Media Skills">Core PR Skills</h4>
+              <div class="skill-tags" id="tags-primary">
+                <!-- Swapped in script.js -->
+                <span class="skill-tag">Public Relations</span>
+                <span class="skill-tag">Media Relations</span>
+                <span class="skill-tag">Brand Management</span>
+                <span class="skill-tag">Crisis Communication</span>
+                <span class="skill-tag">Stakeholder Management</span>
+                <span class="skill-tag">Marketing Strategy</span>
+              </div>
+            </div>
+            
+            <div class="skill-category">
+              <h4 class="skill-subtitle">Creative & Technical</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Graphic Design</span>
+                <span class="skill-tag">Website Management</span>
+                <span class="skill-tag">Google Analytics (GA4)</span>
+                <span class="skill-tag">Google Workspace</span>
+                <span class="skill-tag">AI Tools</span>
+                <span class="skill-tag">Critical Thinking</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Connect Cards (Bento side-by-side) -->
+        <div class="connect-grid">
+          
+          <!-- LinkedIn Card -->
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="connect-card linkedin-card magnetic">
+            <div class="connect-header">
+              <svg class="connect-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              <span class="connect-arrow">↗</span>
+            </div>
+            <div class="connect-details">
+              <span class="connect-platform">LinkedIn</span>
+              <span class="connect-handle">Tejas Pratap Singh</span>
+            </div>
+          </a>
+
+          <!-- GitHub Card -->
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="connect-card github-card magnetic">
+            <div class="connect-header">
+              <svg class="connect-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              <span class="connect-arrow">↗</span>
+            </div>
+            <div class="connect-details">
+              <span class="connect-platform">GitHub</span>
+              <span class="connect-handle">Tejas Pratap</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Contact Box -->
+        <div class="bento-card" id="contact">
+          <h3 class="card-title">Initiate Collaboration</h3>
+          <form class="contact-form" action="#" onsubmit="event.preventDefault(); alert('Message sent! Tejas will get back to you shortly.');">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="name" required placeholder=" " class="form-input">
+                <label for="name" class="form-label">Full Name</label>
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" required placeholder=" " class="form-input">
+                <label for="email" class="form-label">Email Address</label>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <textarea id="message" required placeholder=" " class="form-input" rows="4"></textarea>
+              <label for="message" class="form-label">Tell me about your project...</label>
+            </div>
+            
+            <div class="contact-footer">
+              <div class="contact-direct-links">
+                <a href="mailto:tejasgsa@gmail.com" class="direct-link">tejasgsa@gmail.com</a>
+                <a href="tel:+918445435219" class="direct-link">+91 8445435219</a>
+              </div>
+              <button type="submit" class="submit-btn magnetic">Send Inquiry</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Tejas Pratap Singh. Crafted for absolute speed & fluid interaction.</p>
+  </footer>
+
+  <!-- Script File -->
+  <script src="script.js"></script>
+</body>
+</html>
