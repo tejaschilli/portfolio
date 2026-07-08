@@ -909,7 +909,8 @@ button {
   position: relative;
 }
 
-.gallery-slide img {
+.gallery-slide img,
+.gallery-slide video {
   width: 100%;
   height: auto;
   display: block;
