@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background cream gradient -->
+    <linearGradient id="cream-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF8F5" />
+      <stop offset="100%" stop-color="#F3EFE9" />
+    </linearGradient>
+
+    <!-- Glassmorphic card gradient -->
+    <linearGradient id="glass-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.3" />
+    </linearGradient>
+
+    <!-- Border highlight gradient -->
+    <linearGradient id="border-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2" />
+    </linearGradient>
+
+    <!-- Main brand rose-orange gradient -->
+    <linearGradient id="brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B4A" />
+      <stop offset="100%" stop-color="#D8315B" />
+    </linearGradient>
+
+    <!-- Pulse glow filter -->
+    <filter id="pulse-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Ambient drop shadow for the squircle tile -->
+    <filter id="tile-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#1C1917" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1C1917" flood-opacity="0.03" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="512" height="512" fill="url(#cream-bg)" rx="96" />
+
+  <!-- Aurora soft background glows behind the icon -->
+  <circle cx="160" cy="180" r="140" fill="#FF6B4A" opacity="0.15" filter="blur(40px)" />
+  <circle cx="340" cy="320" r="150" fill="#D8315B" opacity="0.18" filter="blur(48px)" />
+
+  <!-- Glassmorphic Icon Frame -->
+  <g filter="url(#tile-shadow)">
+    <!-- Base Squircle -->
+    <rect x="96" y="96" width="320" height="320" rx="72" fill="url(#glass-grad)" />
+    <!-- Highlight Border stroke -->
+    <rect x="96.5" y="96.5" width="319" height="319" rx="71.5" fill="none" stroke="url(#border-grad)" stroke-width="3" />
+  </g>
+
+  <!-- Glowing Heartbeat EKG waveform transitioning into a Pulse Node -->
+  <g filter="url(#pulse-glow)">
+    <!-- Heartbeat stroke -->
+    <path d="M 140 256 L 200 256 L 215 210 L 235 310 L 255 170 L 275 285 L 290 256 L 330 256"
+          fill="none" 
+          stroke="url(#brand-grad)" 
+          stroke-width="12" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+    
+    <!-- Pulsing circular node (avoids hard edges, showing fluid connection) -->
+    <circle cx="330" cy="256" r="20" fill="url(#brand-grad)" />
+    <!-- Secondary outer pulse ring -->
+    <circle cx="330" cy="256" r="32" fill="none" stroke="url(#brand-grad)" stroke-width="3" opacity="0.5" />
+  </g>
+</svg>
