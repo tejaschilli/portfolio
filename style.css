@@ -89,17 +89,24 @@ body {
 
 .top-display-title {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 6.2vw, 5.4rem); /* Clamps font size to prevent overflow shifting */
+  font-size: clamp(2.5rem, 7.2vw, 6.2rem); /* Enlarged font size to fill the header space */
   font-weight: 800;
   color: var(--text-primary);
   text-transform: uppercase;
-  line-height: 0.85;
+  line-height: 0.9;
   margin: 0;
   opacity: 0.95;
   text-shadow: 0 0 50px rgba(200, 75, 49, 0.08);
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+.top-display-title span {
+  display: inline-block;
+  transform: scaleY(1.45); /* Stretches the letters vertically on the Y-axis */
+  transform-origin: center;
+  font-weight: 800; /* Keeps characters thick and bold */
 }
 
 /* ----------------------------------------------------
