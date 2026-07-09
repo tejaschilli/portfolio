@@ -74,6 +74,13 @@ function initToggle() {
       });
     });
 
+    // 2.5. Dynamic metric descriptions
+    document.querySelectorAll('.dynamic-metric-desc').forEach(el => {
+      triggerFade(el, () => {
+        el.textContent = mode === 'pr' ? el.getAttribute('data-pr') : el.getAttribute('data-smm');
+      });
+    });
+
     // 3. Narrative Text
     const aboutText = document.querySelector('.dynamic-about');
     triggerFade(aboutText, () => {
@@ -256,10 +263,10 @@ function initAmbientBackground() {
     height = canvas.height = window.innerHeight;
   });
 
-  // Grid points variables
-  const cols = 35;
-  const rows = 35;
-  const spacing = 35; // px spacing between grid points
+  // Grid points variables (scaled up to cover ultra-wide monitors fully)
+  const cols = 65;
+  const rows = 55;
+  const spacing = 45;
   
   // Wave state
   let time = 0;
