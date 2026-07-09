@@ -202,18 +202,57 @@ button {
 /* ----------------------------------------------------
    HERO AREA SECTION
    ---------------------------------------------------- */
+/* Unified Hero Card & Placements */
 .hero-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+  padding: 3rem !important;
+}
+
+.hero-utility-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.download-cv-btn {
+  background-color: var(--accent-light);
+  color: var(--text-primary);
+  border: 1px solid var(--card-border);
+  padding: 0.6rem 1.25rem;
+  font-size: 0.85rem;
+}
+
+.download-cv-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
+.hero-main-layout {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 3rem;
-  margin-bottom: 2.5rem;
   align-items: center;
+  width: 100%;
+}
+
+.hero-role-title {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  display: inline-block;
+  margin-bottom: 0.75rem;
 }
 
 .hero-text-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
 }
 
 .hero-title {
@@ -229,13 +268,49 @@ button {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  color: var(--accent-color);
+  color: var(--text-primary);
+  opacity: 0.95;
 }
 
-.hero-subtitle {
-  font-size: 1.15rem;
+/* Contacts Grid */
+.hero-contacts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.5rem;
+  margin: 2rem 0;
+  max-width: 550px;
+}
+
+.hero-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  max-width: 540px;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+
+.hero-contact-item svg {
+  color: var(--text-secondary);
+  transition: var(--transition-smooth);
+}
+
+.hero-contact-item:hover,
+.hero-contact-item:hover svg {
+  color: var(--text-primary);
+}
+
+/* Hero Navigation Row Tabs */
+.hero-navigation-row {
+  border-top: 1px solid var(--card-border);
+  padding-top: 1.75rem;
+  width: 100%;
+}
+
+.hero-navigation-row .nav {
+  display: flex;
+  gap: 2.5rem;
 }
 
 /* Morphing Archway Portrait */
@@ -250,9 +325,9 @@ button {
   height: 380px;
   overflow: hidden;
   position: relative;
-  border: 1px solid var(--accent-color);
-  background-color: var(--accent-light);
-  box-shadow: 0 10px 30px var(--accent-shadow);
+  border: 1px solid var(--card-border);
+  background-color: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 10px 30px var(--card-shadow);
   transition: border-radius 1s ease-in-out;
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   animation: morph-frame 10s ease-in-out infinite alternate;
@@ -263,12 +338,12 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  filter: grayscale(15%) contrast(1.05);
+  filter: grayscale(10%) contrast(1.05);
   transition: var(--transition-smooth);
 }
 
 .portrait-arch:hover .portrait-img {
-  transform: scale(1.05);
+  transform: scale(1.04);
   filter: grayscale(0%);
 }
 
@@ -285,6 +360,86 @@ button {
   100% {
     border-radius: 60% 40% 40% 60% / 60% 50% 50% 40%;
   }
+}
+
+/* Tools Logo Grid */
+.tools-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.tool-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  transition: var(--transition-smooth);
+}
+
+.tool-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-secondary);
+  transform: translateY(-2px);
+}
+
+.tool-icon {
+  font-size: 1.15rem;
+  display: inline-flex;
+}
+
+.tool-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Languages List & Level Bars */
+.languages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.lang-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.lang-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.lang-name {
+  color: var(--text-primary);
+}
+
+.lang-level {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.lang-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.lang-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--text-secondary) 0%, var(--accent-color) 100%);
+  border-radius: 10px;
 }
 
 /* ----------------------------------------------------
@@ -342,10 +497,10 @@ button {
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   background-color: var(--card-border);
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--card-border);
 }
@@ -721,7 +876,6 @@ button {
    PROJECT SHOWCASE SECTION
    ---------------------------------------------------- */
 .project-showcase {
-  margin-bottom: 2.5rem;
   padding: 2.5rem;
 }
 

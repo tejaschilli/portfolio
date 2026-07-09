@@ -81,10 +81,11 @@ function initToggle() {
       aboutText.textContent = mode === 'pr' ? aboutText.getAttribute('data-pr') : aboutText.getAttribute('data-smm');
     });
 
-    // 4. Skills Section Title
-    const skillsTitle = document.querySelector('.dynamic-skills-title');
-    triggerFade(skillsTitle, () => {
-      skillsTitle.textContent = mode === 'pr' ? skillsTitle.getAttribute('data-pr') : skillsTitle.getAttribute('data-smm');
+    // 4. Skills Section Titles (Hero & Skills Card)
+    document.querySelectorAll('.dynamic-skills-title').forEach(el => {
+      triggerFade(el, () => {
+        el.textContent = mode === 'pr' ? el.getAttribute('data-pr') : el.getAttribute('data-smm');
+      });
     });
 
     // 5. Skill tags replacement
@@ -259,7 +260,7 @@ function initGallery() {
 }
 
 /* ----------------------------------------------------
-   5. FLUID AMBIENT AURORA BLOBS BACKGROUND
+   5. INTERACTIVE COSMIC STAR DUST BACKGROUND
    ---------------------------------------------------- */
 function initAmbientBackground() {
   const canvas = document.getElementById('ambient-canvas');
@@ -270,6 +271,7 @@ function initAmbientBackground() {
 
   let width = window.innerWidth;
   let height = window.innerHeight;
+  let time = 0;
   let animationFrameId;
 
   // Track mouse coordinates with inertia
@@ -288,51 +290,30 @@ function initAmbientBackground() {
   window.addEventListener('resize', resize);
   resize();
 
-  // Blobs definition
-  const blobs = [
-    {
-      baseX: 0.25,
-      baseY: 0.35,
-      cx: width * 0.25,
-      cy: height * 0.35,
-      vx: 0,
-      vy: 0,
-      radius: 450,
-      color: { r: 255, g: 107, b: 74, a: 0.35 }, // Warm Coral
-      angle: Math.random() * Math.PI * 2,
-      speed: 0.0006,
-      orbitX: 180,
-      orbitY: 140
-    },
-    {
-      baseX: 0.75,
-      baseY: 0.3,
-      cx: width * 0.75,
-      cy: height * 0.3,
-      vx: 0,
-      vy: 0,
-      radius: 520,
-      color: { r: 139, g: 92, b: 246, a: 0.25 }, // Amethyst Purple
-      angle: Math.random() * Math.PI * 2,
-      speed: 0.0004,
-      orbitX: 220,
-      orbitY: 160
-    },
-    {
-      baseX: 0.5,
-      baseY: 0.75,
-      cx: width * 0.5,
-      cy: height * 0.75,
-      vx: 0,
-      vy: 0,
-      radius: 480,
-      color: { r: 245, g: 158, b: 11, a: 0.22 }, // Amber Gold
-      angle: Math.random() * Math.PI * 2,
-      speed: 0.0005,
-      orbitX: 160,
-      orbitY: 120
-    }
+  // Star Dust Particles definition
+  const particles = [];
+  const particleCount = 850;
+
+  // Particle color palette matching the brand system
+  const colors = [
+    'rgba(245, 158, 11, ', // Amber Gold
+    'rgba(139, 92, 246, ', // Purple
+    'rgba(255, 107, 74, ', // Coral
+    'rgba(255, 255, 255, ' // Soft White Star
   ];
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      size: 0.7 + Math.random() * 1.5,
+      colorPrefix: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 0.15 + Math.random() * 0.65,
+      speed: 0.4 + Math.random() * 0.9
+    });
+  }
 
   // Capture mouse & touch coordinates
   function updateMouseCoordinates(e) {
@@ -358,56 +339,61 @@ function initAmbientBackground() {
 
   // High-performance animation loop
   function animate() {
-    // Clear canvas
-    ctx.clearRect(0, 0, width, height);
+    // Semi-transparent redraw creates organic motion trails
+    ctx.fillStyle = 'rgba(5, 5, 8, 0.08)';
+    ctx.fillRect(0, 0, width, height);
 
-    // Smooth mouse coordinate interpolation
+    time += 0.005;
+
+    // Smooth mouse coordinates tracking
     mouse.x += (mouse.targetX - mouse.x) * 0.08;
     mouse.y += (mouse.targetY - mouse.y) * 0.08;
 
-    // Use overlay color mixing composition for rich blending
-    ctx.globalCompositeOperation = 'screen';
+    particles.forEach((p) => {
+      // Flow Field Current Algorithm
+      // Generate fluid trigonometric currents based on spatial coordinate and time
+      const flowAngle = Math.sin(p.x * 0.003 + time) * Math.cos(p.y * 0.003 - time) * Math.PI * 2;
+      const targetVx = Math.cos(flowAngle) * p.speed;
+      const targetVy = Math.sin(flowAngle) * p.speed;
 
-    blobs.forEach((blob) => {
-      // Float orbit animation
-      blob.angle += blob.speed;
-      const ox = Math.cos(blob.angle) * blob.orbitX;
-      const oy = Math.sin(blob.angle) * blob.orbitY;
+      // Glide velocities towards the current vector
+      p.vx += (targetVx - p.vx) * 0.04;
+      p.vy += (targetVy - p.vy) * 0.04;
 
-      // Base coordinate resolved in canvas space
-      const bx = width * blob.baseX + ox;
-      const by = height * blob.baseY + oy;
-
-      // Mouse influence pulls coordinates slightly towards cursor
-      let targetX = bx;
-      let targetY = by;
-
+      // Cosmic Vortex Attraction
+      // If mouse is active, particles near cursor swirl in a gravity orbit
       if (mouse.active) {
-        targetX = bx + (mouse.x - bx) * 0.18;
-        targetY = by + (mouse.y - by) * 0.18;
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 260) {
+          const force = (1 - dist / 260) * 0.18;
+          
+          // Pull towards cursor (gravity)
+          p.vx += (dx / dist) * force * 0.4;
+          p.vy += (dy / dist) * force * 0.4;
+
+          // Swirl perpendicular vector (vortex orbital velocity)
+          p.vx += (-dy / dist) * force * 1.5;
+          p.vy += (dx / dist) * force * 1.5;
+        }
       }
 
-      // Spring-damper physics
-      const spring = 0.015;
-      const damping = 0.93;
+      // Update positions
+      p.x += p.vx;
+      p.y += p.vy;
 
-      blob.vx += (targetX - blob.cx) * spring;
-      blob.vy += (targetY - blob.cy) * spring;
-      blob.vx *= damping;
-      blob.vy *= damping;
+      // Wrap coordinates around screen boundaries
+      if (p.x < -20) p.x = width + 20;
+      if (p.x > width + 20) p.x = -20;
+      if (p.y < -20) p.y = height + 20;
+      if (p.y > height + 20) p.y = -20;
 
-      blob.cx += blob.vx;
-      blob.cy += blob.vy;
-
-      // Draw radial gradient bubble
-      const gradient = ctx.createRadialGradient(blob.cx, blob.cy, 0, blob.cx, blob.cy, blob.radius);
-      gradient.addColorStop(0, `rgba(${blob.color.r}, ${blob.color.g}, ${blob.color.b}, ${blob.color.a})`);
-      gradient.addColorStop(0.35, `rgba(${blob.color.r}, ${blob.color.g}, ${blob.color.b}, ${blob.color.a * 0.4})`);
-      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
-      ctx.fillStyle = gradient;
+      // Draw glowing particle
+      ctx.fillStyle = `${p.colorPrefix}${p.alpha})`;
       ctx.beginPath();
-      ctx.arc(blob.cx, blob.cy, blob.radius, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fill();
     });
 
