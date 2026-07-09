@@ -183,17 +183,6 @@ body {
   filter: grayscale(10%) contrast(1.05);
 }
 
-/* Large Statement at bottom */
-.hero-left-statement {
-  font-family: var(--font-heading);
-  font-size: 1.65rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  margin-top: 1rem;
-}
 
 /* Right Half Layout (Translucent Glass Overlay) */
 .hero-right-split {
