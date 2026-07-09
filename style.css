@@ -2,14 +2,14 @@
    DESIGN SYSTEM & VARIABLES (WARM EDITORIAL SYSTEM)
    ---------------------------------------------------- */
 :root {
-  --bg-color: #0A0A0A;        /* Pitch Dark Black */
+  --bg-color: #050508;        /* Rich Space Black */
   --text-primary: #FFFFFF;    /* Pure White */
-  --text-secondary: #8E8E93;  /* Medium Silver Gray */
-  --accent-color: #F2F2F7;    /* Light Gray / Silver Accent */
-  --accent-light: #1C1C1E;    /* Dark Charcoal Gray */
-  --card-bg: #121212;         /* Solid Matte Black */
-  --card-border: #2C2C2E;     /* Dark Slate Border */
-  --card-shadow: rgba(0, 0, 0, 0.5);
+  --text-secondary: #A1A1AA;  /* Sleek Silver Gray */
+  --accent-color: #F4F4F5;    /* Modern Off-White Accent */
+  --accent-light: rgba(255, 255, 255, 0.08); /* Semi-transparent white */
+  --card-bg: rgba(15, 15, 20, 0.55);   /* Frosted Glass Dark Fill */
+  --card-border: rgba(255, 255, 255, 0.09); /* Soft border for glass refraction */
+  --card-shadow: rgba(0, 0, 0, 0.4);
   --accent-shadow: rgba(255, 255, 255, 0.03);
   
   --font-serif: "Playfair Display", Georgia, serif;
@@ -176,6 +176,8 @@ button {
   border-radius: 24px;
   padding: 2.5rem;
   box-shadow: 0 4px 20px var(--card-shadow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
@@ -537,6 +539,8 @@ button {
   border-radius: 24px;
   padding: 2rem;
   box-shadow: 0 4px 20px var(--card-shadow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1120,4 +1124,16 @@ button {
   .nav {
     flex-wrap: wrap;
   }
+}
+
+/* Interactive Canvas Background Element */
+#ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2; /* Set behind all page content and glassmorphic cards */
+  pointer-events: none; /* Let pointer events fall through to elements below */
+  background: radial-gradient(circle at 50% 50%, #0c0a15, #050508); /* Fallback deep space dark background */
 }

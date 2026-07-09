@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  initAmbientBackground();
   initToggle();
   initMagneticElements();
   initConnectCards();
@@ -255,4 +256,163 @@ function initGallery() {
 
   // Start autoplay
   resetAutoplay();
+}
+
+/* ----------------------------------------------------
+   5. FLUID AMBIENT AURORA BLOBS BACKGROUND
+   ---------------------------------------------------- */
+function initAmbientBackground() {
+  const canvas = document.getElementById('ambient-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  let animationFrameId;
+
+  // Track mouse coordinates with inertia
+  const mouse = { x: width / 2, y: height / 2, active: false, targetX: width / 2, targetY: height / 2 };
+
+  // Set retina-crisp canvas size
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  // Blobs definition
+  const blobs = [
+    {
+      baseX: 0.25,
+      baseY: 0.35,
+      cx: width * 0.25,
+      cy: height * 0.35,
+      vx: 0,
+      vy: 0,
+      radius: 450,
+      color: { r: 255, g: 107, b: 74, a: 0.35 }, // Warm Coral
+      angle: Math.random() * Math.PI * 2,
+      speed: 0.0006,
+      orbitX: 180,
+      orbitY: 140
+    },
+    {
+      baseX: 0.75,
+      baseY: 0.3,
+      cx: width * 0.75,
+      cy: height * 0.3,
+      vx: 0,
+      vy: 0,
+      radius: 520,
+      color: { r: 139, g: 92, b: 246, a: 0.25 }, // Amethyst Purple
+      angle: Math.random() * Math.PI * 2,
+      speed: 0.0004,
+      orbitX: 220,
+      orbitY: 160
+    },
+    {
+      baseX: 0.5,
+      baseY: 0.75,
+      cx: width * 0.5,
+      cy: height * 0.75,
+      vx: 0,
+      vy: 0,
+      radius: 480,
+      color: { r: 245, g: 158, b: 11, a: 0.22 }, // Amber Gold
+      angle: Math.random() * Math.PI * 2,
+      speed: 0.0005,
+      orbitX: 160,
+      orbitY: 120
+    }
+  ];
+
+  // Capture mouse & touch coordinates
+  function updateMouseCoordinates(e) {
+    mouse.active = true;
+    if (e.touches && e.touches.length > 0) {
+      mouse.targetX = e.touches[0].clientX;
+      mouse.targetY = e.touches[0].clientY;
+    } else {
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
+    }
+  }
+
+  function mouseLeave() {
+    mouse.active = false;
+  }
+
+  window.addEventListener('mousemove', updateMouseCoordinates);
+  window.addEventListener('touchmove', updateMouseCoordinates, { passive: true });
+  window.addEventListener('touchend', mouseLeave);
+  window.addEventListener('touchcancel', mouseLeave);
+  document.addEventListener('mouseleave', mouseLeave);
+
+  // High-performance animation loop
+  function animate() {
+    // Clear canvas
+    ctx.clearRect(0, 0, width, height);
+
+    // Smooth mouse coordinate interpolation
+    mouse.x += (mouse.targetX - mouse.x) * 0.08;
+    mouse.y += (mouse.targetY - mouse.y) * 0.08;
+
+    // Use overlay color mixing composition for rich blending
+    ctx.globalCompositeOperation = 'screen';
+
+    blobs.forEach((blob) => {
+      // Float orbit animation
+      blob.angle += blob.speed;
+      const ox = Math.cos(blob.angle) * blob.orbitX;
+      const oy = Math.sin(blob.angle) * blob.orbitY;
+
+      // Base coordinate resolved in canvas space
+      const bx = width * blob.baseX + ox;
+      const by = height * blob.baseY + oy;
+
+      // Mouse influence pulls coordinates slightly towards cursor
+      let targetX = bx;
+      let targetY = by;
+
+      if (mouse.active) {
+        targetX = bx + (mouse.x - bx) * 0.18;
+        targetY = by + (mouse.y - by) * 0.18;
+      }
+
+      // Spring-damper physics
+      const spring = 0.015;
+      const damping = 0.93;
+
+      blob.vx += (targetX - blob.cx) * spring;
+      blob.vy += (targetY - blob.cy) * spring;
+      blob.vx *= damping;
+      blob.vy *= damping;
+
+      blob.cx += blob.vx;
+      blob.cy += blob.vy;
+
+      // Draw radial gradient bubble
+      const gradient = ctx.createRadialGradient(blob.cx, blob.cy, 0, blob.cx, blob.cy, blob.radius);
+      gradient.addColorStop(0, `rgba(${blob.color.r}, ${blob.color.g}, ${blob.color.b}, ${blob.color.a})`);
+      gradient.addColorStop(0.35, `rgba(${blob.color.r}, ${blob.color.g}, ${blob.color.b}, ${blob.color.a * 0.4})`);
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(blob.cx, blob.cy, blob.radius, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    animationFrameId = requestAnimationFrame(animate);
+  }
+
+  animate();
 }
