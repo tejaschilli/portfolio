@@ -16,6 +16,9 @@
 </head>
 <body class="pr-mode">
 
+  <!-- Interactive Ambient Canvas Background -->
+  <canvas id="ambient-canvas"></canvas>
+
   <!-- SVG Liquid gooey filter (used in toggle sliding) -->
   <svg class="liquid-filter-svg" style="position: absolute; width: 0; height: 0;" aria-hidden="true">
     <defs>
@@ -27,13 +30,13 @@
     </defs>
   </svg>
 
-  <!-- Top Display Title (Aesthetic from Image 2) -->
-  <div class="top-display-container">
-    <h1 class="top-display-title">PORTFOLIO</h1>
-  </div>
-
   <!-- Main Content Container -->
   <main class="container">
+    
+    <!-- Top Display Title (Aesthetic from Image 2 - now aligned inside container) -->
+    <div class="top-display-container">
+      <h1 class="top-display-title">PORTFOLIO</h1>
+    </div>
     
     <!-- Split Hero Card (Frosted Glass Overlay from Image 1) -->
     <section class="hero-section bento-card">
@@ -83,7 +86,7 @@
         <!-- Main Info Panel -->
         <div class="hero-right-body">
           <span class="hero-role-title dynamic-skills-title" data-pr="Public Relations Officer" data-smm="Social Media Manager">Public Relations Officer</span>
-          <h2 class="hero-name-title">TEJAS PRATAP</h2>
+          <h2 class="hero-name-title">TEJAS PRATAP SINGH</h2>
           <p class="hero-bio dynamic-about" data-pr="I specialize in managing media relations, crafting press releases, and coordinating events to strengthen public image and build trust-based partnerships." data-smm="I am a creative strategist driving audience growth across social channels, turning analytics into engaging high-impact campaigns.">
             I specialize in managing media relations, crafting press releases, and coordinating events to strengthen public image and build trust-based partnerships.
           </p>
@@ -91,7 +94,7 @@
           <!-- Contact Quick Info -->
           <div class="hero-quick-contacts">
             <div class="contact-pill"><span class="pill-icon">✉</span>tejasgsa@gmail.com</div>
-            <div class="contact-pill"><span class="pill-icon">📍</span>Kanpur, India</div>
+            <div class="contact-pill"><span class="pill-icon">📍</span>Etawah, UP</div>
           </div>
           
           <!-- Toggle Switcher -->
@@ -215,7 +218,7 @@
                   <span class="lang-name">Hindi</span>
                   <span class="lang-level">Professional</span>
                 </div>
-                <div class="lang-bar"><div class="lang-bar-fill" style="width: 90%"></div></div>
+                <div class="lang-bar"><div class="lang-bar-fill" style="width: 100%"></div></div>
               </div>
             </div>
           </div>
@@ -225,36 +228,20 @@
         <div class="skills-col">
           <div class="bento-card" style="height: 100%;">
             <h4 class="card-subtitle">Tools I Use</h4>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">My technical workspace for creative asset building, audience measurement, and campaign execution.</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">My technical workspace for creative asset building, media outreach, and campaign tracking.</p>
             <div class="tools-logo-grid">
-              <div class="tool-item">
-                <span class="tool-icon">💼</span>
-                <span class="tool-name">Meta Suite</span>
-              </div>
-              <div class="tool-item">
-                <span class="tool-icon">🎨</span>
-                <span class="tool-name">Canva</span>
-              </div>
-              <div class="tool-item">
-                <span class="tool-icon">❖</span>
-                <span class="tool-name">Figma</span>
-              </div>
-              <div class="tool-item">
-                <span class="tool-icon">📊</span>
-                <span class="tool-name">Analytics</span>
-              </div>
-              <div class="tool-item">
-                <span class="tool-icon">🎬</span>
-                <span class="tool-name">Premiere</span>
-              </div>
-              <div class="tool-item">
-                <span class="tool-icon">🤖</span>
-                <span class="tool-name">ChatGPT</span>
-              </div>
-              <div class="tool-item">
-                <span class="tool-icon">📁</span>
-                <span class="tool-name">Workspace</span>
-              </div>
+              <div class="tool-item"><span class="tool-name">Meta Suite</span></div>
+              <div class="tool-item"><span class="tool-name">Google Analytics</span></div>
+              <div class="tool-item"><span class="tool-name">Canva</span></div>
+              <div class="tool-item"><span class="tool-name">Figma</span></div>
+              <div class="tool-item"><span class="tool-name">Cision</span></div>
+              <div class="tool-item"><span class="tool-name">Muck Rack</span></div>
+              <div class="tool-item"><span class="tool-name">PR Newswire</span></div>
+              <div class="tool-item"><span class="tool-name">Premiere Pro</span></div>
+              <div class="tool-item"><span class="tool-name">Hootsuite</span></div>
+              <div class="tool-item"><span class="tool-name">Slack</span></div>
+              <div class="tool-item"><span class="tool-name">Notion</span></div>
+              <div class="tool-item"><span class="tool-name">Google Alerts</span></div>
             </div>
           </div>
         </div>
@@ -312,10 +299,10 @@
         <div class="project-header">
           <div class="project-identity">
             <div class="project-logo-container">
-              <img src="assets/pulse-logo.svg" alt="Pulse App Logo" class="project-logo">
+              <img src="assets/pulse-logo.svg" alt="Flow App Logo" class="project-logo">
             </div>
             <div class="project-title-group">
-              <h3 class="project-name">Pulse</h3>
+              <h3 class="project-name">Flow</h3>
               <span class="project-type">Socialization Platform · Web & Mobile App</span>
             </div>
           </div>
@@ -330,7 +317,7 @@
           <!-- Text Info -->
           <div class="project-info-col">
             <p class="project-description">
-              Designed and developed Pulse — a premium socialization app that connects young adults for real-life group activities and meetups. Features include event discovery, AI-powered crew matching, safety tools, and verified user profiles. Built with a focus on trust, community, and reducing social friction.
+              Designed and developed Flow — a premium socialization app that connects young adults for real-life group activities and meetups. Features include event discovery, AI-powered crew matching, safety tools, and verified user profiles. Built with a focus on trust, community, and reducing social friction.
             </p>
             <div class="project-tags">
               <span class="project-tag">UI/UX Design</span>
@@ -362,7 +349,7 @@
           <div class="project-gallery-col">
             <div class="project-gallery">
               <div class="gallery-viewport">
-                <div class="gallery-track" id="pulse-gallery-track">
+                <div class="gallery-track" id="flow-gallery-track">
                   <div class="gallery-slide">
                     <video src="assets/pulse-video-1.mp4" autoplay loop muted playsinline></video>
                     <span class="slide-caption">Interactive Demo - Feature Spotlight</span>
@@ -378,11 +365,11 @@
                 </div>
               </div>
               <div class="gallery-controls">
-                <button class="gallery-btn gallery-prev" id="pulse-prev" aria-label="Previous screenshot">
+                <button class="gallery-btn gallery-prev" id="flow-prev" aria-label="Previous screenshot">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                 </button>
-                <div class="gallery-dots" id="pulse-dots"></div>
-                <button class="gallery-btn gallery-next" id="pulse-next" aria-label="Next screenshot">
+                <div class="gallery-dots" id="flow-dots"></div>
+                <button class="gallery-btn gallery-next" id="flow-next" aria-label="Next screenshot">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </button>
               </div>

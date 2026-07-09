@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  initAmbientBackground();
   initToggle();
   initMagneticElements();
   initGallery();
@@ -183,13 +184,13 @@ function initMagneticElements() {
 }
 
 /* ----------------------------------------------------
-   3. PULSE PROJECT SCREENSHOT GALLERY
+   3. FLOW PROJECT SCREENSHOT GALLERY
    ---------------------------------------------------- */
 function initGallery() {
-  const track = document.getElementById('pulse-gallery-track');
-  const prevBtn = document.getElementById('pulse-prev');
-  const nextBtn = document.getElementById('pulse-next');
-  const dotsContainer = document.getElementById('pulse-dots');
+  const track = document.getElementById('flow-gallery-track');
+  const prevBtn = document.getElementById('flow-prev');
+  const nextBtn = document.getElementById('flow-next');
+  const dotsContainer = document.getElementById('flow-dots');
 
   if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
 
@@ -237,4 +238,145 @@ function initGallery() {
 
   // Start autoplay
   resetAutoplay();
+}
+
+/* ----------------------------------------------------
+   4. 3D WAVY MESH CANVAS BACKGROUND (IMAGE 4)
+   ---------------------------------------------------- */
+function initAmbientBackground() {
+  const canvas = document.getElementById('ambient-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  // Grid points variables
+  const cols = 35;
+  const rows = 35;
+  const spacing = 35; // px spacing between grid points
+  
+  // Wave state
+  let time = 0;
+  
+  // Mouse tracking state
+  const mouse = {
+    x: width / 2,
+    y: height / 2,
+    targetX: width / 2,
+    targetY: height / 2
+  };
+
+  window.addEventListener('mousemove', (e) => {
+    mouse.targetX = e.clientX;
+    mouse.targetY = e.clientY;
+  });
+
+  // Rotation angles (radians) looking down at the angled layout
+  let rotX = 0.9;
+  let rotY = -0.3;
+
+  function animate() {
+    time += 0.015;
+    
+    // Smooth pointer physics
+    mouse.x += (mouse.targetX - mouse.x) * 0.08;
+    mouse.y += (mouse.targetY - mouse.y) * 0.08;
+
+    // Adjust grid rotation slightly for an interactive parallax shift
+    const targetRotX = 0.95 + (mouse.y / height - 0.5) * 0.12;
+    const targetRotY = -0.32 + (mouse.x / width - 0.5) * 0.15;
+    
+    rotX += (targetRotX - rotX) * 0.05;
+    rotY += (targetRotY - rotY) * 0.05;
+
+    // Clear background
+    ctx.fillStyle = '#050508';
+    ctx.fillRect(0, 0, width, height);
+
+    // Core static radial glow matching space-black/burgundy layout
+    const radialGlow = ctx.createRadialGradient(
+      width / 2, height * 0.2, 0,
+      width / 2, height * 0.2, Math.max(width, height) * 0.8
+    );
+    radialGlow.addColorStop(0, '#1c0a0c'); // Crimson burgundy center glow
+    radialGlow.addColorStop(0.65, '#050508'); // Space black outer
+    ctx.fillStyle = radialGlow;
+    ctx.fillRect(0, 0, width, height);
+
+    // Camera setup for perspective projection
+    const fov = 750;
+    const centerX = width / 2;
+    const centerY = height / 2.3;
+
+    // Loop through grid coordinates
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        // Compute raw grid points (centered)
+        const x0 = (i - cols / 2) * spacing;
+        const z0 = (j - rows / 2) * spacing;
+
+        // Wave formula using sine/cosine loops
+        let y0 = Math.sin(i * 0.16 + time) * Math.cos(j * 0.16 + time) * 35;
+
+        // Dynamic mouse distortion ripple
+        const mx = mouse.x - centerX;
+        const my = mouse.y - centerY;
+        const dx = x0 - mx;
+        const dy = y0 - my;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist < 220) {
+          const force = (1 - dist / 220) * 18;
+          y0 += Math.sin(dist * 0.04 - time * 4) * force;
+        }
+
+        // Apply rotation on Y axis
+        const x1 = x0 * Math.cos(rotY) - z0 * Math.sin(rotY);
+        const z1 = x0 * Math.sin(rotY) + z0 * Math.cos(rotY);
+
+        // Apply rotation on X axis
+        const y2 = y0 * Math.cos(rotX) - z1 * Math.sin(rotX);
+        const z2 = y0 * Math.sin(rotX) + z1 * Math.cos(rotX);
+
+        // Perspective scale factor
+        const scale = fov / (fov + z2);
+
+        // Map to screen
+        const screenX = centerX + x1 * scale;
+        const screenY = centerY + y2 * scale;
+
+        // Skip rendering points outside visibility limits
+        if (z2 < -fov || screenX < -50 || screenX > width + 50 || screenY < -50 || screenY > height + 50) {
+          continue;
+        }
+
+        // Opacity drops as point recedes to simulate depth of field
+        const depthOpacity = Math.max(0, Math.min(0.55, (1 - z2 / (fov * 0.8))));
+        
+        // Point size scale (wave peaks & closer points are larger)
+        const size = (1.5 + (y0 + 35) / 70 * 2) * scale;
+
+        // Color interpolation between Copper Crimson (#C84B31) and Ivory Cream (#F5EFEB) based on height
+        const ratio = (y0 + 35) / 70;
+        const r = Math.floor(200 + (245 - 200) * ratio);
+        const g = Math.floor(75 + (239 - 75) * ratio);
+        const b = Math.floor(49 + (235 - 49) * ratio);
+        
+        ctx.beginPath();
+        ctx.arc(screenX, screenY, size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${depthOpacity})`;
+        ctx.fill();
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
 }
