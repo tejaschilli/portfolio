@@ -1181,41 +1181,91 @@ body {
   html {
     font-size: 15px;
   }
+  
+  .container {
+    padding: 0 1.25rem;
+  }
+  
+  .bento-card {
+    padding: 2.25rem 1.25rem !important;
+  }
+  
   .top-display-container {
     padding: 4rem 0 1.5rem 0;
   }
+  
+  .top-display-title {
+    font-size: clamp(1.6rem, 7.5vw, 4.2rem) !important;
+  }
+  
   .hero-left-split {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1.25rem;
+    min-height: auto;
   }
+  
   .hero-circle-portrait {
-    width: 260px;
-    height: 260px;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
   }
+  
   .circle-portrait-img {
-    width: 220px;
-    height: 220px;
+    width: 215px;
+    height: 215px;
   }
+  
+  .hero-right-split {
+    padding: 2.5rem 1.25rem;
+  }
+  
+  .hero-right-header .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.25rem;
+    width: 100%;
+  }
+  
   .metrics-horizontal-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+  
   .capabilities-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+  
   .process-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+  
+  .project-showcase {
+    padding: 2.25rem 1.25rem;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+  
+  .project-cta {
+    width: 100%;
+    justify-content: center;
+  }
+  
   .form-row {
     flex-direction: column;
     gap: 1.5rem;
   }
+  
   .contact-footer {
     flex-direction: column;
     gap: 1.5rem;
     align-items: flex-start;
   }
+  
   .submit-btn {
     width: 100%;
   }
