@@ -89,7 +89,7 @@ body {
 
 .top-display-title {
   font-family: var(--font-heading);
-  font-size: 8vw;
+  font-size: clamp(2rem, 6.2vw, 5.4rem); /* Clamps font size to prevent overflow shifting */
   font-weight: 800;
   color: var(--text-primary);
   text-transform: uppercase;
@@ -1176,9 +1176,6 @@ body {
   }
   .top-display-container {
     padding: 4rem 0 1.5rem 0;
-  }
-  .top-display-title {
-    font-size: 10vw;
   }
   .hero-left-split {
     padding: 3rem 1.5rem;
